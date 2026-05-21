@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: 'Syne', sans-serif;
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+
+    /* Light luxury theme — vibrant */
+    --background: 38 30% 95%;        /* warm ivory */
+    --foreground: 221 40% 18%;       /* deep navy */
+    --card: 152 22% 87%;             /* sage */
+    --card-foreground: 221 40% 18%;
+    --popover: 38 30% 95%;
+    --popover-foreground: 221 40% 18%;
+    --primary: 221 40% 18%;
+    --primary-foreground: 38 30% 95%;
+    --secondary: 152 22% 87%;
+    --secondary-foreground: 221 40% 18%;
+    --muted: 152 22% 87%;
+    --muted-foreground: 221 22% 42%;
+    --accent: 38 55% 58%;            /* vivid gold */
+    --accent-foreground: 38 30% 95%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 152 16% 79%;
+    --input: 152 22% 87%;
+    --ring: 38 55% 58%;
+    --radius: 0.25rem;
+
+    --chart-1: 221 37% 19%;
+    --chart-2: 38 48% 60%;
+    --chart-3: 150 18% 60%;
+    --chart-4: 221 37% 40%;
+    --chart-5: 38 48% 40%;
+
+    --sidebar-background: 36 25% 96%;
+    --sidebar-foreground: 221 37% 19%;
+    --sidebar-primary: 221 37% 19%;
+    --sidebar-primary-foreground: 36 25% 96%;
+    --sidebar-accent: 150 18% 89%;
+    --sidebar-accent-foreground: 221 37% 19%;
+    --sidebar-border: 150 12% 82%;
+    --sidebar-ring: 38 48% 60%;
+
+    /* Custom brand tokens */
+    --ivory: #F5F1EA;
+    --sage: #D8E8DC;
+    --navy: #1A2640;
+    --gold: #C9A84C;
+    --glass-bg: rgba(255,255,255,0.18);
+    --glass-border: rgba(30,42,68,0.1);
+    --surface-1: rgba(255,255,255,0.5);
+    --surface-2: rgba(255,255,255,0.8);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+  }
+}
+
+@layer utilities {
+  /* Glass morphism */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border);
+  }
+
+  .glass-strong {
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border: 1px solid rgba(30,42,68,0.12);
+  }
+
+  /* Text effects */
+  .text-gradient {
+    background: linear-gradient(135deg, #1E2A44 0%, #3a4f7a 50%, #C8A96B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #C8A96B 0%, #e8c97b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glow effects */
+  .glow-navy {
+    box-shadow: 0 0 40px rgba(30,42,68,0.15), 0 0 80px rgba(30,42,68,0.06);
+  }
+  .glow-gold {
+    box-shadow: 0 0 40px rgba(200,169,107,0.3), 0 0 80px rgba(200,169,107,0.12);
+  }
+  .glow-gold-sm {
+    box-shadow: 0 0 20px rgba(200,169,107,0.25);
+  }
+
+  /* Noise texture overlay */
+  .noise::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.025;
+    mix-blend-mode: multiply;
+  }
+
+  /* Sharp button base */
+  .btn-sharp {
+    @apply inline-flex items-center justify-center gap-2 font-heading font-semibold tracking-wide transition-all duration-200 select-none;
+  }
+
+  /* Grid pattern */
+  .grid-pattern {
+    background-image:
+      linear-gradient(rgba(30,42,68,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(30,42,68,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: #F6F3EE; }
+  ::-webkit-scrollbar-thumb { background: #C8A96B; border-radius: 2px; }
+
+  /* Font families */
+  .font-display { font-family: var(--font-display); }
+  .font-heading { font-family: var(--font-heading); }
+  .font-body { font-family: var(--font-body); }
+}
+
+@layer components {
+  /* Gradient border */
+  .gradient-border {
+    position: relative;
+    background: var(--glass-bg);
+  }
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(200,169,107,0.5), rgba(255,255,255,0.1), rgba(30,42,68,0.2));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+}
+
+/* Animations */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-12px) rotate(1deg); }
+  66% { transform: translateY(-6px) rotate(-1deg); }
+}
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-pulse-slow { animation: pulse-slow 4s ease-in-out infinite; }
+.animate-shimmer { animation: shimmer 2.5s infinite; }
+.animate-accordion-down { animation: accordion-down 0.2s ease-out; }
+.animate-accordion-up { animation: accordion-up 0.2s ease-out; }
